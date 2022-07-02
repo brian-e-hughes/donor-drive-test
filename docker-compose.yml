@@ -1,0 +1,12 @@
+version: "2.2"
+services:
+  elasticsearch:
+    ports: 
+      - 9200:9200
+    build:
+      context: ./dockerfiles/elasticsearch
+      dockerfile: Dockerfile
+  pythonscript:
+    build:
+      context: ./dockerfiles/pythonscript
+      dockerfile: Dockerfile
