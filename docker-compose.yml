@@ -1,6 +1,15 @@
 version: "2.2"
 services:
   elasticsearch:
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl http://localhost:9200",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
     ports: 
       - 9200:9200
     build:
@@ -9,4 +18,10 @@ services:
   pythonscript:
     build:
       context: ./dockerfiles/pythonscript
+      dockerfile: Dockerfile
+  kibana:
+    ports: 
+      - 5601:5601
+    build:
+      context: ./dockerfiles/kibana
       dockerfile: Dockerfile
